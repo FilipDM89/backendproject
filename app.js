@@ -14,7 +14,7 @@ app.get("/", (req, res)=> {
 });
 
 app.get("/history", (req, res)=> {
-    res.render("landing")
+    res.render("history")
    })
 
 //PORT LISTEN
