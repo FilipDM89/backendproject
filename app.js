@@ -11,7 +11,11 @@ app.set("view engine", "ejs");
 
 app.get("/", (req, res)=> {
  res.render("landing")
-})
+});
+
+app.get("/history", (req, res)=> {
+    res.render("landing")
+   })
 
 //PORT LISTEN
 app.listen(port, function(){
