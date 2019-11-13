@@ -7,6 +7,16 @@ const port          = process.env.PORT || 1837;
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
+mongoose.connect("mongodb://localhost/yelp_camp", {
+	useUnifiedTopology: true,
+	useNewUrlParser: true,
+	useCreateIndex: true
+}).then(() => {
+	console.log("Connected to DB!");
+}).catch(err => {
+	console.log("ERROR:", err.message);
+});
+
 //test history articles
 
 const historyArticles = [
