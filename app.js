@@ -30,7 +30,11 @@ app.get("/history", (req, res)=> {
 
 app.get("/components/infantry", (req, res)=> {
     res.render("components/infantry")
-   });
+});
+
+app.get("/components/cavalry", (req, res)=> {
+    res.render("components/cavalry")
+});
 
 //PORT LISTEN
 
