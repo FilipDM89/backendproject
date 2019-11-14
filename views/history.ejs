@@ -1,3 +1,14 @@
 <% include partials/header.ejs %>
-here there will be articles about history
+<main class="container">
+<% historyarticles.forEach(function(historyarticle){ %>
+    <article>
+        <h2><%= historyarticle.title %></h2>
+        <img src="<%= historyarticle.image %>">
+        <span><%= historyarticle.created %></span>
+        <div>
+            <strong>Content: </strong><%= historyarticle.content %>
+        </div>
+    </article>
+<% }); %>
+</main>
 <% include partials/footer.ejs %>

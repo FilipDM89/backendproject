@@ -26,7 +26,14 @@ app.get("/", (req, res)=> {
 });
 
 app.get("/history", (req, res)=> {
-   res.render("history")   
+   //retrieves articles from the database
+	historyArticle.find({}, (err, historyarticles) => {
+		if(err){
+			console.log(err)
+		} else {
+			res.render("history", {historyarticles: historyarticles})
+		};
+	});
 });
 
 app.get("/components/infantry", (req, res)=> {
@@ -51,11 +58,7 @@ const historyArticleSchema = new mongoose.Schema({
 });
 
 const historyArticle = mongoose.model("historyArticle", historyArticleSchema)
-historyArticle.create({
-	title: "test1",
-	image: "https://i.pinimg.com/originals/a9/5d/ed/a95ded0add7dea7ec7484d75c554a1a8.jpg",
-	content: "testing the content right here",
-});
+
 
 //PORT LISTEN
 
