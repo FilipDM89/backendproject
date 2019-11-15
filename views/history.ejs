@@ -6,7 +6,7 @@
         <div><img src="<%= historyarticle.image %>"></div>
         <strong><span><%= historyarticle.created.toDateString() %></span></strong>
         <div>
-            <strong>Content: </strong><%= historyarticle.content %>
+            <strong>Content: </strong><%= historyarticle.content.substring(0, 300) %>
         </div>
         <a href="/history/<%= historyarticle._id %>">Read Article</a>
     </article>

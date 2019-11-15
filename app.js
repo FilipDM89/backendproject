@@ -2,10 +2,12 @@
 const express       = require("express");
 const app           = express();
 const bodyParser    = require("body-parser");
-const mongoose      = require("mongoose")
+const mongoose      = require("mongoose");
+const methodOverride= require("method-override");
 const port          = process.env.PORT || 1837;
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"))
 app.set(express.static("public"));
 app.set("view engine", "ejs");
 
@@ -66,14 +68,42 @@ app.get("/components/cavalry", (req, res)=> {
 //SHOW ROUTE
 
 app.get("/history/:id", (req, res) =>{
+	//finds article by its id number first
 	historyArticle.findById(req.params.id, (err, foundArticle) => {
 		if(err){
-			res.send("error");
+			res.render("history");
 		} else {
 			res.render("show", {historyarticle: foundArticle});
 		}
 	});
 });
+
+
+//EDIT ROUTE
+
+app.get("/history/:id/edit", (req, res) => {
+	historyArticle.findById(req.params.id, (err, foundArticle) => {
+		if(err){
+			res.redirect("history");
+		} else {
+			res.render("edit", {historyarticle: foundArticle});
+		}
+	});
+});
+
+
+//UPDATE ROUTE
+
+app.put("/history/:id", (req, res) => {
+	historyArticle.findByIdAndUpdate(req.params.id, req.body.historyarticle, (err, editedArticle) => {
+		if(err){
+			res.redirect("history");
+		} else {
+			res.redirect("/history/" + req.params.id);
+		}
+	});
+});
+
 //SCHEMA
 
 const historyArticleSchema = new mongoose.Schema({
