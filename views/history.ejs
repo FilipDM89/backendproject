@@ -3,7 +3,7 @@
 <% historyarticles.forEach(function(historyarticle){ %>
     <article>
         <h2><%= historyarticle.title %></h2>
-        <div><img src="<%= historyarticle.image %>"></div>
+        <div><img class="img-fluid rounded" src="<%= historyarticle.image %>"></div>
         <strong><span><%= historyarticle.created.toDateString() %></span></strong>
         <div>
             <strong>Content: </strong><%= historyarticle.content.substring(0, 300) %>
