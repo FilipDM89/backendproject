@@ -36,6 +36,25 @@ app.get("/history", (req, res)=> {
 	});
 });
 
+app.get("/history/new", (req, res) => {
+	res.render("new")
+});
+
+
+//CREATE ROUTE
+
+app.post("/history", (req, res) => {
+	//creates new article
+	historyArticle.create(req.body.historyarticle, (err, newHistoryArticle) => {
+		if(err){
+			console.log(err);
+		} else {
+			//if made succesfully, it is sent to history
+			res.redirect("/history")
+		}
+	})
+});
+
 app.get("/components/infantry", (req, res)=> {
     res.render("components/infantry")
 });
@@ -44,7 +63,17 @@ app.get("/components/cavalry", (req, res)=> {
     res.render("components/cavalry")
 });
 
+//SHOW ROUTE
 
+app.get("/history/:id", (req, res) =>{
+	historyArticle.findById(req.params.id, (err, foundArticle) => {
+		if(err){
+			res.send("error");
+		} else {
+			res.render("show", {historyarticle: foundArticle});
+		}
+	});
+});
 //SCHEMA
 
 const historyArticleSchema = new mongoose.Schema({

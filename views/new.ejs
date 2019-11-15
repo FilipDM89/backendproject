@@ -1,0 +1,11 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <h5>New Article</h5>
+    <form action="/history" method="POST">
+        <label><strong>Title: </strong></label><input type="text" name="historyarticle[title]" placeholder="Insert title here">
+        <label><strong>Image: </strong></label><input type="text" name="historyarticle[image]" placeholder="Insert image-URL">
+        <label><strong>Content: </strong></label><textarea name="historyarticle[content]" placeholder="Write content here"></textarea>
+        <input type="submit">
+    </form>
+</div>
+<% include partials/footer.ejs %>

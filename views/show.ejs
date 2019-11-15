@@ -1,0 +1,18 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <div>
+        <h2><%= historyarticle.title %></h2>
+    </div>
+    <div>
+        <img src="<%= historyarticle.image %>">
+    </div>
+    <div>
+        <strong><%= historyarticle.created.toDateString() %></strong>
+    </div>
+    <div>
+        <%= historyarticle.content %>
+    </div>
+
+</div>
+
+<% include partials/footer.ejs %>
