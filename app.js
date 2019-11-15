@@ -104,6 +104,22 @@ app.put("/history/:id", (req, res) => {
 	});
 });
 
+
+//DELETE ROUTE 
+
+app.delete("/history/:id", (req, res) => {
+	//destroy blog
+	historyArticle.findByIdAndRemove(req.params.id, (err) => {
+		if(err){
+			console.log(err)
+		} else {
+			//redirect somewhere
+			res.redirect("/history")
+		}
+	});
+});
+
+
 //SCHEMA
 
 const historyArticleSchema = new mongoose.Schema({

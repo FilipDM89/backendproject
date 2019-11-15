@@ -12,7 +12,9 @@
     <div>
         <%= historyarticle.content %>
     </div>
-
+    <form action="/history/<%= historyarticle._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
 </div>
 
 <% include partials/footer.ejs %>
