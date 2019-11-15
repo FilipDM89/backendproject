@@ -1,15 +1,15 @@
 //SETUP
 const express       = require("express");
-const app           = express();
+let app           	= express();
 const bodyParser    = require("body-parser");
 const mongoose      = require("mongoose");
 const methodOverride= require("method-override");
 const port          = process.env.PORT || 1837;
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(methodOverride("_method"))
-app.set(express.static("public"));
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
 mongoose.connect("mongodb://localhost/aoi", {
 	useUnifiedTopology: true,
