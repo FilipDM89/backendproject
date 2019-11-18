@@ -8,17 +8,44 @@ body {
 
 /* history page */
 
-.title-history {
-    text-align: center;
+.container-fluid .title-top {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#title-history {
+    display: flex;
+    justify-content: center;
 }
 
 article {
-    margin: 1%;
+    margin: 2%;
 }
 
 .container .container-history {
     display: flex;
     flex-wrap: wrap;
+}
+
+#write-icon {
+    display: flex; 
+    justify-content: flex-end;
+}
+
+.history-image {
+ height: 250px;
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+
+.history-article-title {
+    min-height: 100px;
+}
+
+.content {
+    margin-bottom: 2%;
 }
 
 /* Show History Article Page */
@@ -41,6 +68,5 @@ article {
 .form-show {
     margin-bottom: 1%;
 }
-
 
 
