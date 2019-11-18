@@ -1,11 +1,18 @@
 <% include partials/header.ejs %>
 <div class="container">
-    <h5>Edit <%= historyarticle.title %></h5>
+    <h5>Edit <em><%= historyarticle.title %></em></h5>
     <form action="/history/<%= historyarticle._id %>?_method=PUT" method="POST">
-        <label><strong>Title: </strong></label><input type="text" name="historyarticle[title]" value="<%= historyarticle.title %>">
-        <label><strong>Image: </strong></label><input type="text" name="historyarticle[image]" value="<%= historyarticle.image %>">
-        <label><strong>Content: </strong></label><textarea name="historyarticle[content]"><%= historyarticle.content %></textarea>
-        <input type="submit">
+      <div class="form-group">
+        <label><strong>Title: </strong></label><input class="form-control" type="text" name="historyarticle[title]" value="<%= historyarticle.title %>">
+      </div>
+      <div class="form-group">
+        <label><strong>Image: </strong></label><input class="form-control" type="text" name="historyarticle[image]" value="<%= historyarticle.image %>">
+      </div>
+      <div class="form-group">
+        <label><strong>Content: </strong></label><textarea class="form-control" rows="15" name="historyarticle[content]"><%= historyarticle.content %></textarea>
+      </div>
+        <input type="submit" class="btn btn-dark">
+    </div>
     </form>
-</div>
+
 <% include partials/footer.ejs %>
