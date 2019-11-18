@@ -9,9 +9,10 @@
         <label><strong>Image: </strong></label><input class="form-control" type="text" name="historyarticle[image]" value="<%= historyarticle.image %>">
       </div>
       <div class="form-group">
-        <label><strong>Content: </strong></label><textarea class="form-control" rows="15" name="historyarticle[content]"><%= historyarticle.content %></textarea>
+        <label><strong>Content: </strong></label><textarea class="form-control" rows="10" name="historyarticle[content]"><%= historyarticle.content %></textarea>
       </div>
         <input type="submit" class="btn btn-dark">
+        <a href="/history/<%= historyarticle._id %>" class="btn btn-dark">Back</a>
     </div>
     </form>
 

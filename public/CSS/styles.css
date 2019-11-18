@@ -6,7 +6,41 @@ body {
     background-color: rgb(253, 249, 231);
 }
 
+/* history page */
+
+.title-history {
+    text-align: center;
+}
+
 article {
     margin: 1%;
 }
+
+.container .container-history {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Show History Article Page */
+
+.date {
+    margin-bottom: 1%;
+}
+
+.show-title {
+    text-align: center;
+    font-style: italic;
+}
+
+.show-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-show {
+    margin-bottom: 1%;
+}
+
+
 

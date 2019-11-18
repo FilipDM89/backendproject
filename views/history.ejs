@@ -1,17 +1,23 @@
 <% include partials/header.ejs %>
-<main class="container">
-<% historyarticles.forEach(function(historyarticle){ %>
-  <div class="row">
-    <article class="col-sm-4">
-        <h2><%= historyarticle.title %></h2>
-        <div><img class="img-fluid rounded" src="<%= historyarticle.image %>"></div>
-        <strong><span><%= historyarticle.created.toDateString() %></span></strong>
-        <div>
-            <strong>Content: </strong><%= historyarticle.content.substring(0, 300) %>
-        </div>
-        <a href="/history/<%= historyarticle._id %>">Read Article</a>
-    </article>
+
+<h1 class="title-history"><em>Articles</em></h1>
+
+<div class="container container-history">
+    <main class="row">
+    <% historyarticles.forEach(function(historyarticle){ %>
+    <div class="col-md-4 col-sm-6">
+        <article >
+            <h2><%= historyarticle.title %></h2>
+            <div><img class="img-fluid rounded history-image" src="<%= historyarticle.image %>"></div>
+            <strong><span><%= historyarticle.created.toDateString() %></span></strong>
+            <div>
+                <strong>Content: </strong><%= historyarticle.content.substring(0, 300) %>
+            </div>
+            <a href="/history/<%= historyarticle._id %>">Read Article</a>
+        </article>
+    </div>
+    <% }); %>
+    </main>
+    </div>
 </div>
-<% }); %>
-</main>
 <% include partials/footer.ejs %>

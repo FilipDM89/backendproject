@@ -2,10 +2,17 @@
 <div class="container">
     <h5>New Article</h5>
     <form action="/history" method="POST">
-        <label><strong>Title: </strong></label><input type="text" name="historyarticle[title]" placeholder="Insert title here">
-        <label><strong>Image: </strong></label><input type="text" name="historyarticle[image]" placeholder="Insert image-URL">
-        <label><strong>Content: </strong></label><textarea name="historyarticle[content]" placeholder="Write content here"></textarea>
-        <input type="submit">
+      <div class="form-group">
+        <label><strong>Title: </strong></label><input class="form-control" type="text" name="historyarticle[title]" placeholder="Insert title here">
+      </div>
+      <div class="form-group">
+        <label><strong>Image: </strong></label><input class="form-control" type="text" name="historyarticle[image]" placeholder="Insert image-URL">
+      </div>
+      <div class="form-group">
+        <label><strong>Content: </strong></label><textarea rows ="10" class="form-control" name="historyarticle[content]" placeholder="Write content here"></textarea>
+      </div>
+        <input type="submit" class="btn btn-dark">
+        <a href="/history" class="btn btn-light">Cancel</a>
     </form>
 </div>
 <% include partials/footer.ejs %>

@@ -1,20 +1,27 @@
 <% include partials/header.ejs %>
 <div class="container">
-    <div>
+    <div class="show-title">
         <h2><%= historyarticle.title %></h2>
     </div>
     <div>
-        <img src="<%= historyarticle.image %>">
+        <img class="show-image rounded" src="<%= historyarticle.image %>">
     </div>
-    <div>
-        <strong><%= historyarticle.created.toDateString() %></strong>
-    </div>
-    <div>
+    <hr>
+  <div class="row">
+    <div class="card-body col-lg-12 col-md-12 col-sm-12">
         <%= historyarticle.content %>
     </div>
-    <form action="/history/<%= historyarticle._id %>?_method=DELETE" method="POST">
-        <button>Delete</button>
+  </div>
+    <hr>
+    <div class="date">
+            <strong><%= historyarticle.created.toDateString() %> - Author</strong>
+    </div> 
+    <form class="form-show" action="/history/<%= historyarticle._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-light">Delete</button>
+        <a href="/history/<%= historyarticle._id %>/edit" class="btn btn-dark">Edit</a>
+        <a href="/history" class="btn btn-dark">Back</a>
     </form>
 </div>
+
 
 <% include partials/footer.ejs %>
