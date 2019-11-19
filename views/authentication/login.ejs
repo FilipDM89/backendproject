@@ -1,5 +1,17 @@
 <% include ../partials/header.ejs %>
 
-Login Page
+<div class="container">
+    <h4>Login</h4>
+    <form action="/login" method="POST" autocomplete="off">
+        <div class="form-group">
+            <label><strong>Username: </strong></label><input type="text" name="username" placeholder="Type Username">
+        </div>
+        <div class="form-group">
+            <label><strong>Password: </strong></label><input type="password" name="password" placeholder="Type Username">
+        </div>
+        <button class="btn btn-dark">Sign in</button>
+    </form>
+</div>
+
 
 <% include ../partials/footer.ejs %>

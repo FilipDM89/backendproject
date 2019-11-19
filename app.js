@@ -8,19 +8,10 @@ const historyArticle= require("./models/historyarticle");
 const commentArticle= require("./models/comment.js");
 const user 			= require("./models/user"); 
 const passport		= require("passport") //necessary for auth
-const passportLoc 	= require("passport-local") //necessary for auth
-const passportLocal = require("passport-local-mongoose"); //necessary for auth
+const localStrategy = require("passport-local") //necessary for auth
 const port          = process.env.PORT || 1837;
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(methodOverride("_method"));
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public"));
-app.use(passport.initialize()); //part of auth
-app.use(passport.session()); //part of auth
 
-passport.serializeUser(user.serializeUser()); //part of auth
-passport.deserializeUser(user.deserializeUser()); //part of auth
 
 mongoose.connect("mongodb://localhost/aoi", {
 	useUnifiedTopology: true,
@@ -31,6 +22,17 @@ mongoose.connect("mongodb://localhost/aoi", {
 }).catch(err => {
 	console.log("ERROR:", err.message);
 });
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+app.use(passport.initialize()); //part of auth
+app.use(passport.session()); //part of auth
+
+passport.use(new localStrategy(user.authenticate()));
+passport.serializeUser(user.serializeUser()); //part of auth
+passport.deserializeUser(user.deserializeUser()); //part of auth
 
 app.use(require("express-session")({
 	secret: "Rule Britannia",
@@ -116,6 +118,13 @@ app.post("/signup", (req, res)=> {
 
 app.get("/login", (req, res)=> {
     res.render("authentication/login")
+});
+
+app.post("/login", passport.authenticate("local", {
+	successRedirect: "/",
+	failureRedirect: "/login"
+}) ,(req, res) => {
+	// res.send("BANAAN");
 });
 
 
