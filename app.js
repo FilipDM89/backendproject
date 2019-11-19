@@ -115,11 +115,12 @@ app.post("/signup", (req, res)=> {
 	});
 });
 
-
+//Login Page
 app.get("/login", (req, res)=> {
     res.render("authentication/login")
 });
 
+//Login Logic
 app.post("/login", passport.authenticate("local", {
 	successRedirect: "/",
 	failureRedirect: "/login"
@@ -127,6 +128,11 @@ app.post("/login", passport.authenticate("local", {
 	// res.send("BANAAN");
 });
 
+//Logout
+app.get("/logout", (req, res) => {
+	req.logout();
+	res.redirect("/");
+});
 
 //==========
 //SHOW ROUTE
