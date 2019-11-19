@@ -4,6 +4,8 @@ let app           	= express();
 const bodyParser    = require("body-parser");
 const mongoose      = require("mongoose");
 const methodOverride= require("method-override");
+const historyArticle= require("./models/historyarticle")
+const commentArticle= require("./models/comment.js")
 const port          = process.env.PORT || 1837;
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -42,6 +44,9 @@ app.get("/history/new", (req, res) => {
 	res.render("new")
 });
 
+app.get("/weaponry/firearms", (req, res)=> {
+	res.render("weaponry/firearms");
+   });
 
 //CREATE ROUTE
 
@@ -118,21 +123,6 @@ app.delete("/history/:id", (req, res) => {
 		}
 	});
 });
-
-
-//SCHEMA
-
-const historyArticleSchema = new mongoose.Schema({
-	title: String,
-	image: String,
-	content: String,
-	created: {
-		type: Date, 
-		default: Date.now
-	}
-});
-
-const historyArticle = mongoose.model("historyArticle", historyArticleSchema)
 
 
 //PORT LISTEN
