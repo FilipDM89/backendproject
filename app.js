@@ -27,8 +27,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+
 app.use(passport.initialize()); //part of auth
 app.use(passport.session()); //part of auth
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+}); //makes a a currentuser
 
 passport.use(new localStrategy(user.authenticate()));
 passport.serializeUser(user.serializeUser()); //part of auth
@@ -49,12 +54,14 @@ app.get("/", (req, res)=> {
 });
 
 app.get("/history", (req, res)=> {
+	
+	console.log(req.user)
    //retrieves articles from the database
 	historyArticle.find({}, (err, historyarticles) => {
 		if(err){
 			console.log(err)
 		} else {
-			res.render("history", {historyarticles: historyarticles})
+			res.render("history", {historyarticles: historyarticles, currentUser: req.user})
 		};
 	});
 });
@@ -96,7 +103,7 @@ app.get("/components/cavalry", (req, res)=> {
 //AUTHENTICATION ROUTE
 //==================== 
 
-//shows sign up form
+//shows registration form
 app.get("/signup", (req, res)=> {
     res.render("authentication/signup")
 });
@@ -107,9 +114,10 @@ app.post("/signup", (req, res)=> {
 	user.register(newUser, req.body.password, (err, user) => {
 		if(err){
 			console.log(err)
+			return res.render("signup")
 		} else {
 			passport.authenticate("local")(req, res, () => {
-				res.render("index")
+				res.redirect("index")
 			});
 		};
 	});
@@ -125,7 +133,6 @@ app.post("/login", passport.authenticate("local", {
 	successRedirect: "/",
 	failureRedirect: "/login"
 }) ,(req, res) => {
-	// res.send("BANAAN");
 });
 
 //Logout
@@ -201,6 +208,12 @@ app.delete("/history/:id", (req, res) => {
 		}
 	});
 });
+
+
+//==============
+//COMMENT ROUTE
+//==============
+
 
 //===========
 //PORT LISTEN
