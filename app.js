@@ -134,6 +134,15 @@ app.get("/logout", (req, res) => {
 	res.redirect("/");
 });
 
+//middleware
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/login")
+}
+
+
 //==========
 //SHOW ROUTE
 //==========
