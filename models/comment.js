@@ -3,8 +3,14 @@ const mongoose = require("mongoose");
 //SCHEMA
 
 const commentSchema = new mongoose.Schema({
-    author: String,
     text: String,
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "user"
+        },
+        username: String, 
+    },
     created: {
         type: Date,
         default: Date.now

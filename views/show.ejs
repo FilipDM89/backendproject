@@ -14,7 +14,7 @@
   </div>
     <hr>
     <div class="date">
-            <strong><%= historyarticle.created.toDateString() %> - Author</strong>
+            <strong><%= historyarticle.created.toDateString() %></strong>
     </div> 
     <form class="form-show" action="/history/<%= historyarticle._id %>?_method=DELETE" method="POST">
         <button class="btn btn-light">Delete</button>
@@ -27,21 +27,18 @@
     <hr>
     <h5>Comments</h5>
     <div class="well">
-
-    </div>
-    <div>
-        <form class="commentform" action="/history/<%= historyarticle._id %>/comments" method="POST">
-            <h6>Write a Comment:</h6>
-            
-            <label>Nickname: </label><input class="form-control" type="text" name="comment[title]" placeholder="Insert Nickname">
-            <label>Comment: </label><textarea rows="3" class="form-control" name="comment[text]" placeholder="Your comment"></textarea>
-            <div class="text-right">
-                <a class="btn btn-dark pull-right" role="button" data-toggle="collapse" href="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new comment</a>
-            </div>
-        </form>
-    </div>
-
-</div>
-
+        <div>
+            <a class ="btn btn-dark" href="/history/<%= historyarticle.id %>/comments/new">Add New Comment</a>
+        </div>
+            <% historyarticle.comments.forEach( (comment) => { %>
+                <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="text-right"><em><%= comment.created.toDateString() %></em></span>
+                            <p> 
+                                <%= comment.text %>
+                            </p>
+                        </div>
+                    </div>
+           <% }) %> 
 <% include partials/footer.ejs %>

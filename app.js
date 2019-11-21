@@ -12,6 +12,7 @@ const localStrategy = require("passport-local") //necessary for auth
 const passportLocal = require("passport-local-mongoose");
 const historyRoutes = require("./routes/historyarticles")
 const indexRoutes	= require("./routes/index")
+const commentRoutes	= require("./routes/comments")
 const port          = process.env.PORT || 1837;
 
 
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 app.use(historyRoutes);
 app.use(indexRoutes);
+app.use(commentRoutes);
 
 // app.use("/history", historyRoutes); a way to dry the code, later on
 
