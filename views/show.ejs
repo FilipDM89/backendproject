@@ -1,44 +1,64 @@
 <% include partials/header.ejs %>
 <div class="container">
-    <div class="show-title">
-        <h2><%= historyarticle.title %></h2>
-    </div>
-    <div>
-        <img class="show-image rounded" src="<%= historyarticle.image %>">
-    </div>
-    <hr>
+  <div class="show-title">
+    <h2><%= historyarticle.title %></h2>
+  </div>
+  <div>
+    <img class="show-image rounded" src="<%= historyarticle.image %>" />
+  </div>
+  <hr />
   <div class="row">
     <div class="card-body col-lg-12 col-md-12 col-sm-12">
-        <%= historyarticle.content %>
+      <%= historyarticle.content %>
     </div>
   </div>
-    <hr>
-    <div class="date">
-            <strong><%= historyarticle.created.toDateString() %></strong>
-    </div> 
-    <form class="form-show" action="/history/<%= historyarticle._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-light">Delete</button>
-        <a href="/history/<%= historyarticle._id %>/edit" class="btn btn-dark">Edit</a>
-        <a href="/history" class="btn btn-dark">Back</a>
-    </form>
+  <hr />
+  <div class="date">
+    <strong><%= historyarticle.created.toDateString() %></strong>
+  </div>
+  <form
+    class="form-show"
+    action="/history/<%= historyarticle._id %>?_method=DELETE"
+    method="POST"
+  >
+    <a href="/history" class="btn btn-dark">Back</a>
+    <a href="/history/<%= historyarticle._id %>/edit" class="btn btn-dark"
+      >Edit</a
+    >
+
+    <button class="btn btn-light">Delete</button>
+  </form>
 </div>
 
 <div class="container">
-    <hr>
-    <h5>Comments</h5>
-    <div class="well">
-        <div>
-            <a class ="btn btn-dark" href="/history/<%= historyarticle.id %>/comments/new">Add New Comment</a>
-        </div>
-            <% historyarticle.comments.forEach( (comment) => { %>
-                <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
-                            <span class="text-right"><em><%= comment.created.toDateString() %></em></span>
-                            <p> 
-                                <%= comment.text %>
-                            </p>
-                        </div>
-                    </div>
-           <% }) %> 
-<% include partials/footer.ejs %>
+  <hr />
+  <h5>Comments</h5>
+  <div class="well">
+    <div>
+      <a
+        class="btn btn-dark"
+        href="/history/<%= historyarticle.id %>/comments/new"
+        >Add New Comment</a
+      >
+    </div>
+    <% historyarticle.comments.forEach( (comment) => { %>
+    <div class="row">
+      <div class="col-md-12">
+        <strong><%= comment.author.username %></strong>
+        <span class="text-right"
+          ><em><%= comment.created.toDateString() %></em></span
+        >
+        <p>
+          <%= comment.text %>
+        </p>
+        <span class="edit-button">
+          <a class="btn btn-dark" href="#">Edit</a>
+        </span>
+        <form>
+          <button class="btn btn-light">Delete</button>
+        </form>
+      </div>
+    </div>
+    <% }) %> <% include partials/footer.ejs %>
+  </div>
+</div>

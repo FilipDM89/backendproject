@@ -1,13 +1,30 @@
 <% include ../partials/header.ejs %>
 <div class="container">
-    <h4 style="text-align:center;">Add Comment to: <%= historyarticle.title %></h4>
-    <form class="commentform" action="/history/<%= historyarticle._id %>/comments" method="POST">
-        <h6>Write a Comment:</h6>
-        <label>Comment: </label><textarea rows="3" type="text" class="form-control" name="comment[text]" placeholder="comment"></textarea>
-        <div class="text-right">
-        <button class="btn btn-dark"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new comment</button>
-            <a href="/history/<%=historyarticle._id %>" class="btn btn-dark">Cancel</a>
-        </div>
-    </form>
+  <h4 style="text-align:center;">
+    Add Comment to: <%= historyarticle.title %>
+  </h4>
+  <form
+    class="commentform"
+    action="/history/<%= historyarticle._id %>/comments"
+    method="POST"
+  >
+    <h6>Write a Comment:</h6>
+    <textarea
+      rows="3"
+      type="text"
+      class="form-control"
+      name="comment[text]"
+      placeholder="comment"
+    ></textarea>
+    <div class="text-right">
+      <button class="btn btn-dark">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
+        new comment
+      </button>
+      <a href="/history/<%=historyarticle._id %>" class="btn btn-dark"
+        >Cancel</a
+      >
+    </div>
+  </form>
 </div>
 <% include ../partials/footer.ejs %>
